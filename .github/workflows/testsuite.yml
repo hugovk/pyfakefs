@@ -133,7 +133,7 @@ jobs:
       - name: Install extra dependencies
         if: ${{ matrix.python-version != '3.14' }}
         run: |
-          python -m pip install pandas
+          python -m pip install pandas pyarrow
         shell: bash
       - name: Run pytest tests
         run: |
