@@ -128,11 +128,16 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
           python -m pip install -U pytest==${{ matrix.pytest-version }}
-          python -m pip install pandas parquet pyarrow
-          python -m pip install -e .
+          python -m pip install parquet pyarrow
+        shell: bash
+      - name: Install extra dependencies
+        if: ${{ matrix.python-version != '3.14' }}
+        run: |
+          python -m pip install pandas
         shell: bash
       - name: Run pytest tests
         run: |
+          python -m pip install -e .
           echo "$(python -m pytest pyfakefs/pytest_tests/pytest_plugin_failing_helper.py)" > ./testresult.txt
           pytest pyfakefs/pytest_tests
           cd pyfakefs/pytest_tests/ns_package
