@@ -128,7 +128,7 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
           python -m pip install -U pytest==${{ matrix.pytest-version }}
-          python -m pip install parquet pyarrow
+          python -m pip install parquet
         shell: bash
       - name: Install extra dependencies
         if: ${{ matrix.python-version != '3.14' }}
